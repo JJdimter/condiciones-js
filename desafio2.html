@@ -20,7 +20,45 @@
 
     <main>
         <h1>Desafío 2: Contador de sticker</h1>
-        <p>Este es el contenido del Desafío 2.</p>
+        <p>Escoge un sticker y elige la cantidad debajo de cada uno.</p>
+        <div id="stickers" class="sticker-grid">
+            <div class="sticker-item">
+                <img src="./assets/img/JoeCoolSticker-ProductImage.webp" alt="Sticker 1" style="cursor:pointer;max-width:100px">
+                <input type="number" class="sticker-input" value="0" min="0" max="10" aria-label="Cantidad sticker 1">
+            </div>
+            <div class="sticker-item">
+                <img src="./assets/img/PEANUTS-052_The-Joe-Cool-On-A-Doghouse-Vinyl-Sticker-Decal.webp" alt="Sticker 2" style="cursor:pointer;max-width:100px">
+                <input type="number" class="sticker-input" value="0" min="0" max="10" aria-label="Cantidad sticker 2">
+            </div>
+            <div class="sticker-item">
+                <img src="./assets/img/FlyingAceSticker-ProductImage.webp" alt="Sticker 3" style="cursor:pointer;max-width:100px">
+                <input type="number" class="sticker-input" value="0" min="0" max="10" aria-label="Cantidad sticker 3">
+            </div>
+        </div>
+        <p id="stickerMessage">Llevas 0 stickers</p>
+        <script>
+            const stickerInputs = document.querySelectorAll('.sticker-input');
+            const stickerMessage = document.getElementById('stickerMessage');
+
+            function updateStickerCount() {
+                let totalStickers = 0;
+                stickerInputs.forEach(input => {
+                    totalStickers += parseInt(input.value) || 0;
+                });
+
+                if (totalStickers > 10) {
+                    stickerMessage.textContent = 'Superaste el límite de stickers';
+                } else {
+                    stickerMessage.textContent = `Llevas ${totalStickers} sticker${totalStickers !== 1 ? 's' : ''}`;
+                }
+            }
+
+            stickerInputs.forEach(input => {
+                input.addEventListener('input', updateStickerCount);
+            });
+
+            updateStickerCount();
+        </script>
     </main>
 </body>
 </html>
