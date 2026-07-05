@@ -22,9 +22,20 @@
 		<h1>Desafío 1: Imagen</h1>
 		<p>Este es el menú principal. Usa los enlaces para navegar a las otras dos páginas.</p>
 		<ul>
-			<li><a href="pagina1.html">Ir a Página 1</a></li>
-			<li><a href="pagina2.html">Ir a Página 2</a></li>
+			<li><a href="desafio2.html">Ir al Desafío 2</a></li>
+			<li><a href="desafio3.html">Ir al Desafío 3</a></li>
 		</ul>
+		<img id="toggleImage" src="./assets/img/the-metropolitan-museum-of-art-WjECuRrxd_c-unsplash.jpg" alt="Imagen de ejemplo" style="display:block;max-width:100%;cursor:pointer">
 	</main>
+	<script>
+		const img = document.getElementById('toggleImage');
+		img.addEventListener('click', () => {
+			if (img.style.border) {
+				img.style.border = '';
+			} else {
+				img.style.border = '2px solid red';
+			}
+		});
+	</script>
 </body>
 </html>
