@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desafío 2 - Condiciones JS</title>
+    <title>Desafío 3 - Condiciones JS</title>
     <style>
         body{font-family:Arial,Helvetica,sans-serif;margin:0;padding:0}
         nav{background:#2b6cb0;color:#fff;padding:10px}
         nav a{color:#fff;margin-right:15px;text-decoration:none;font-weight:600}
         main{padding:20px}
+        .code-inputs{display:flex;gap:10px;margin:15px 0}
+        .code-cell{width:45px;height:45px;text-align:center;font-size:1.2rem;border:2px solid #2b6cb0;border-radius:8px;outline:none}
+        .code-cell:focus{border-color:#1e4f8a;box-shadow:0 0 4px rgba(43,108,176,.3)}
     </style>
 </head>
 <body>  
@@ -21,7 +24,46 @@
 
     <main>
         <h1>Desafío 3: Código Secreto</h1>
-        <p>Este es el contenido del Desafío 3.</p>
+        <p>Ingresa el código secreto para desbloquear el contenido.</p>
+        <div class="code-inputs">
+            <input type="text" class="code-cell" maxlength="1" inputmode="numeric" aria-label="Dígito 1">
+            <input type="text" class="code-cell" maxlength="1" inputmode="numeric" aria-label="Dígito 2">
+            <input type="text" class="code-cell" maxlength="1" inputmode="numeric" aria-label="Dígito 3">
+        </div>
+        <button id="unlockButton">Desbloquear</button>
+        <p id="message"></p>
     </main>
+    <script>
+        const codeCells = document.querySelectorAll('.code-cell');
+        const unlockButton = document.getElementById('unlockButton');
+        const message = document.getElementById('message');
+        const secretCode = '911';
+        const secretCode2 = '714';
+
+        codeCells.forEach((cell, index) => {
+            cell.addEventListener('input', () => {
+                if (cell.value.length === 1 && index < codeCells.length - 1) {
+                    codeCells[index + 1].focus();
+                }
+            });
+
+            cell.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && cell.value === '' && index > 0) {
+                    codeCells[index - 1].focus();
+                }
+            });
+        });
+
+        unlockButton.addEventListener('click', () => {
+            const enteredCode = Array.from(codeCells).map(cell => cell.value).join('');
+            if (enteredCode === secretCode || enteredCode === secretCode2) {
+                message.textContent = '¡Código correcto! Contenido desbloqueado.';
+                message.style.color = 'green';
+            } else {
+                message.textContent = 'Código incorrecto. Intenta de nuevo.';
+                message.style.color = 'red';
+            }
+        });
+    </script>
 </body>
 </html>
