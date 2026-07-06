@@ -35,7 +35,7 @@
                 <input type="number" class="sticker-input" value="0" min="0" max="10" aria-label="Cantidad sticker 3">
             </div>
         </div>
-        <p id="stickerMessage">Llevas 0 stickers</p>
+        <p id="stickerMessage"></p>
         <script>
             const stickerInputs = document.querySelectorAll('.sticker-input');
             const stickerMessage = document.getElementById('stickerMessage');
@@ -47,7 +47,7 @@
                 });
 
                 if (totalStickers > 10) {
-                    stickerMessage.textContent = 'Superaste el límite de stickers';
+                    stickerMessage.textContent = 'Puedes llevar un máximo de 10 stickers.';
                 } else {
                     stickerMessage.textContent = `Llevas ${totalStickers} sticker${totalStickers !== 1 ? 's' : ''}`;
                 }
